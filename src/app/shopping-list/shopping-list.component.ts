@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
+import {Ingredient} from '../shared/model/ingredient.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,13 +8,21 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
 
-  firstMessage: string;
+  ingredients: Ingredient[] = [
+    new Ingredient('Apples', 5),
+    new Ingredient('Tomatoes', 6)
+  ];
+
+  constructor() {}
 
   ngOnInit(): void {
     console.log('ShoppingListComponent Init');
-    this.firstMessage = 'First Message on ShoppingListComponent';
   }
 
   ngOnDestroy(): void {
+  }
+
+  addIngredient(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
   }
 }

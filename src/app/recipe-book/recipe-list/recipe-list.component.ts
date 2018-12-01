@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { IRecipe } from '../recipe.model';
 
 @Component({
@@ -10,15 +10,29 @@ export class RecipeListComponent implements OnInit {
   recipes: IRecipe[] = [
     {
       name: 'recipe 1',
-      description: 'some recipe',
-      imagePath: 'https://get.pxhere.com/photo/' +
-        'dish-meal-food-produce-recipe-fish-breakfast-meat-pork-cuisine-steak-pork-chop-power-dishes-grilling-fried-food-604134.jpg'
+      description: 'some recipe 2',
+      imagePath: 'assets/recipe-item/recipe-img.jpg'
+    },
+    {
+      name: 'recipe 2',
+      description: 'some recipe 2',
+      imagePath: 'assets/recipe-item/recipe-img.jpg'
+    },
+    {
+      name: 'recipe 3',
+      description: 'some recipe 3',
+      imagePath: 'assets/recipe-item/recipe-img.jpg'
     }
   ];
+  @Output() showSelectedRecipeDetail = new EventEmitter<IRecipe>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showRecipeDetail(recipe: IRecipe) {
+    this.showSelectedRecipeDetail.emit(recipe);
   }
 
 }
